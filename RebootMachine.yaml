@@ -1,8 +1,10 @@
 ---
-- name: reboot machine
-  hosts: "{{ hosts }}"
-  become: yes
+- name: Reboot Linux Machines
+  hosts: all
+  become: true
+
   tasks:
-  - name: reboot machine
-    reboot:
-      reboot_timeout: 3600
+    - name: APT Package Updater
+      reboot:
+        reboot_timeout: 3600
+        
