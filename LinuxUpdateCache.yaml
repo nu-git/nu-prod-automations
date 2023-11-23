@@ -1,4 +1,10 @@
-- tasks:
-  - name: update linux cache
-    apt:
-      update_cache: yes
+---
+- hosts: all
+
+  become: true
+
+  tasks:
+    - name: APT Package Updater
+      apt:
+        update_cache: yes
+        
