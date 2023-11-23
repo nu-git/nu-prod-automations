@@ -8,6 +8,5 @@
       apt:
         upgrade: yes
         
-    - name: update apt list
-    apt:
-      update_cache: yes
+      apt:
+        update_cache: yes
