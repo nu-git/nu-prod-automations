@@ -4,7 +4,7 @@
   become: true
 
   tasks:
-    - name: APT Package Updater
+    - name: Rebot Linux Machines
       reboot:
         reboot_timeout: 3600
         
