@@ -1,0 +1,4 @@
+- tasks:
+  - name: update linux cache
+    apt:
+      update_cache: yes
