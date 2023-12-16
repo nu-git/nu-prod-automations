@@ -1,6 +1,5 @@
 ---
 - name: send a message to MS Teams
-- hosts: all
 
   tasks:
       name: send a message to MS Teams
