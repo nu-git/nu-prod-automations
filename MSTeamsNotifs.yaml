@@ -2,6 +2,7 @@
 - name: send a message to MS Teams
 - hosts: all
 
+tasks:
   - name: send a message to MS Teams
     when: webhook_url is defined and webhook_url
     delegate_to: localhost
