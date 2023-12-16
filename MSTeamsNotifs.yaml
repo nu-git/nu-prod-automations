@@ -22,9 +22,3 @@
         body:
           title: "IaaS provisioning job: {{ tower_job_id }}"
           text: "IaaS request has completed. Details of VMs created:"
-          sections:
-            - facts:
-              - name : "{{ vm1_name }}"
-                value: "{{ vm1_ip }}"
-              - name : "{{ vm2_name }}"
-                value: "{{ vm2_ip }}"
