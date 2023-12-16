@@ -6,6 +6,6 @@
        
       uri:
         url: "{{webhook_url}}"
-        body: " test"
+        body: This is a test email
         body_format: json
         method: POST
