@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
 
-    vars:
+  vars:
     ## These variables would be generated dynamically as part of your workflow
     tower_job_id: "810"
     vm1_name: "gamora_01"
@@ -22,3 +22,9 @@
         body:
           title: "IaaS provisioning job: {{ tower_job_id }}"
           text: "IaaS request has completed. Details of VMs created:"
+          sections:
+            - facts:
+              - name : "{{ vm1_name }}"
+                value: "{{ vm1_ip }}"
+              - name : "{{ vm2_name }}"
+                value: "{{ vm2_ip }}"
