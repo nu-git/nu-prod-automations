@@ -1,7 +1,7 @@
 ---
 - hosts: all
 
-  become: false
+  become: t
   become_method: sudo
 
   tasks:
