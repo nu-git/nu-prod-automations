@@ -1,0 +1,8 @@
+---
+- hosts: all
+
+  tasks:
+
+  - name: Check if server can ping Cloudflare
+    ansible.netcommon.net_ping:
+      dest: 1.1.1.1
