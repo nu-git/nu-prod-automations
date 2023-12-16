@@ -8,9 +8,6 @@
       - msteams
       - send_msteams
        
-      uri:
-        url: "{{webhook_url}}"
-        method: POST
-        status_code: 200
-        body_format: json
-        body: "This is a test email"
+      office_365_connector_card:
+        webhook: "{{webhook_url}}"
+        text: "we're good"
