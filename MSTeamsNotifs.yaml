@@ -6,6 +6,6 @@
        
       uri:
         url: "{{webhook_url}}"
-        #body: " {{ output.stdout }}"
+        body: " test"
         body_format: json
         method: POST
