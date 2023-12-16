@@ -8,4 +8,7 @@
     - name: APT Package Updater
       apt:
         upgrade: yes
-        
+
+    - name: APT Package Updater
+      apt:
+        update_cache: yes
