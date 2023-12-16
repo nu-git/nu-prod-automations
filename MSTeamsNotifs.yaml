@@ -3,9 +3,14 @@
   tasks:
 
     - name: Log lines to MS Teams
+      tags:
+      - alert
+      - msteams
+      - send_msteams
        
       uri:
         url: "{{webhook_url}}"
-        body: "This is a test email"
-        body_format: json
         method: POST
+        status_code: 200
+        body_format: json
+        body: "This is a test email"
