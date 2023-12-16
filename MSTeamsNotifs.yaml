@@ -1,0 +1,19 @@
+---
+- name: send a message to MS Teams
+  when: webhook_url is defined and webhook_url
+  delegate_to: localhost
+  tags:
+  - alert
+  - msteams
+  - send_msteams
+  comment: " {{ output.stdout }}"
+  uri:
+    url: "{{ webhook_url }}"
+    method: POST
+    status_code: 200
+    body_format: json
+    body: |
+      {
+          "title": "Ansible notification message",
+          "text": "play: {{ playbook_name }}, target: {{ target }}, comment: {{ comment }}"
+      }
