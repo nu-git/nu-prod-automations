@@ -10,7 +10,7 @@
     vm2_name: "gamora_02"
     vm2_ip: "172.1.10.2"
 
-  
+  tasks:
     ## Here you run the automation tasks and capture the output as required to populate the payload
 
     - name: Send a notification to Teams Channel
