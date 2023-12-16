@@ -19,4 +19,4 @@
           {
               "title": "Ansible notification message",
               "text": "play: {{ playbook_name }}, target: {{ target }}, comment: {{ comment }}"
-      }
+          }
