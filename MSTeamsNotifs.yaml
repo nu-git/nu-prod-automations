@@ -1,6 +1,6 @@
 - name: Log lines to MS Teams
   uri:
-    url: "{{ webhook_url }}"
+    url: "{webhook_url}"
     body: "{{ message }}"
     body_format: json
     method: POST
