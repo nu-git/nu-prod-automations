@@ -3,6 +3,7 @@
   tasks:
 
     - name: Log lines to MS Teams
+      message: " {{ output.stdout }}" 
       uri:
         url: "{webhook_url}"
         body: "{{ message }}"
