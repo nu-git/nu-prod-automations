@@ -1,13 +1,15 @@
 ---
 - hosts: all
   tasks:
+  
+    ## Here you run the automation tasks and capture the output as required to populate the payload
 
-    - name: Log lines to MS Teams
-      tags:
-      - alert
-      - msteams
-      - send_msteams
-       
-      office_365_connector_card:
-        webhook: "{{webhook_url}}"
-        text: "we're good"
+    - name: Send a notification to Teams Channel
+      uri:
+        ## Use your own URL here
+        url: "{{webhook_url}}"
+        method: POST
+        body_format: json
+        body:
+          title: "IaaS provisioning job"
+          text: "IaaS request has completed. Details of VMs created:"
