@@ -1,4 +1,5 @@
 ---
+- name: send a message to MS Teams
 - hosts: all
 
   - name: send a message to MS Teams
