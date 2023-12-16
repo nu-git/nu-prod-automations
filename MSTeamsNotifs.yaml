@@ -20,7 +20,7 @@
         method: POST
         body_format: json
         body:
-          title: "IaaS provisioning job: {{$JOB_ID}}"
+          title: "IaaS provisioning job: {{JOB_ID}}"
           text: "IaaS request has completed. Details of VMs created:"
           sections:
             - facts:
