@@ -5,10 +5,10 @@
   become_method: sudo
 
   tasks:
-    - name: APT Package Updater
+    - name: APT Package Upgrade
       apt:
         upgrade: yes
 
-    - name: APT Package Updater
+    - name: APT Cache Update
       apt:
         update_cache: yes
