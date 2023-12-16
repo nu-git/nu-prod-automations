@@ -11,5 +11,5 @@
         method: POST
         body_format: json
         body:
-          title: "IaaS provisioning job"
+          title: "IaaS provisioning job: {{ tower_job_id }}"
           text: "IaaS request has completed. Details of VMs created:"
