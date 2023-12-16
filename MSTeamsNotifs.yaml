@@ -4,7 +4,7 @@
 
   vars:
     ## These variables would be generated dynamically as part of your workflow
-    SEMAPHORE_JOB_ID: {{ SEMAPHORE_JOB_ID }}
+    "SEMAPHORE_JOB_ID": {{ SEMAPHORE_JOB_ID }}
     vm1_name: "gamora_01"
     vm1_ip: "172.1.10.1"
     vm2_name: "gamora_02"
