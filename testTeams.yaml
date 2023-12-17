@@ -1,0 +1,39 @@
+---
+- hosts: all
+  tasks:
+
+  vars:
+    ## These variables would be generated dynamically as part of your workflow
+    JOB_NAME: "Updating Linux Distros"
+
+  tasks:
+    ## Here you run the automation tasks and capture the output as required to populate the payload
+
+    - name: Send a notification to Teams Channel
+      uri:
+        ## Use your own URL here
+        url: "{{webhook_url}}"
+        method: POST
+        body_format: json
+        body:
+          title: "Your job: ** {{JOB_NAME}} ** has started"
+          text: " The automated job to update the linux distros on the P1 PROD servers has begun"
+
+    - name: APT Package Upgrade
+      apt:
+        upgrade: yes
+
+    - name: APT Cache Update
+      apt:
+        update_cache: yes
+
+
+   - name: Send a notification to Teams Channel
+      uri:
+        ## Use your own URL here
+        url: "{{webhook_url}}"
+        method: POST
+        body_format: json
+        body:
+          title: "Your job: ** {{JOB_NAME}} ** has completed successfully"
+          text: " The automated job to update the linux distros on the P1 PROD servers has completed successfully"
