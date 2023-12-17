@@ -19,6 +19,7 @@
     - name: Reboot the PiHole Server to apply updates
       reboot:
         test_command: uptime
+        reboot_timeout: 3600
 
     - name: Inform MS Teams Of Upgrade Completion
       uri:
