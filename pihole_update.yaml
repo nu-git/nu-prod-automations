@@ -13,6 +13,10 @@
     - name: Update PiHole
       ansible.builtin.raw: sudo pihole -up
 
+    - name: Reboot the PiHole Server to apply updates
+      reboot:
+        test_command: uptime
+
     - name: Inform MS Teams Of Upgrade Completion
       uri:
         ## Use your own URL here
