@@ -7,7 +7,7 @@
   tasks:
   vars:
     ## These variables would be generated dynamically as part of your workflow
-    JOB_NAME: "Update PiHole Servers
+    JOB_NAME: "Update PiHole Servers"
 
   tasks:
     - name: Update PiHole
