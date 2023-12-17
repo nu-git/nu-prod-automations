@@ -40,68 +40,68 @@
         method: POST
         body_format: json
         body: |
-        {
-          "type": "AdaptiveCard",
-          "body": [
-              {
-                  "type": "TextBlock",
-                  "size": "Medium",
-                  "weight": "Bolder",
-                  "text": "STARTING :: P1 SERVERS LINUX UPGRADE",
-                  "style": "heading",
-                  "wrap": true
-              },
-              {
-                  "type": "ColumnSet",
-                  "columns": [
-                      {
-                          "type": "Column",
-                          "items": [
-                              {
-                                  "type": "Image",
-                                  "style": "Person",
-                                  "url": "https://cdn.icon-icons.com/icons2/2389/PNG/512/ansible_logo_icon_145495.png",
-                                  "altText": "Matt Hidinger",
-                                  "size": "Small"
-                              }
-                          ],
-                          "width": "auto"
-                      },
-                      {
-                          "type": "Column",
-                          "items": [
-                              {
-                                  "type": "TextBlock",
-                                  "weight": "Bolder",
-                                  "text": "NU-PROD-AUTOMATIONS",
-                                  "wrap": true
-                              },
-                              {
-                                  "type": "TextBlock",
-                                  "spacing": "None",
-                                  "text": "Created {{DATE(2017-02-14T06:08:39Z, SHORT)}}",
-                                  "isSubtle": true,
-                                  "wrap": true
-                              }
-                          ],
-                          "width": "stretch"
-                      }
-                  ]
-              },
-              {
-                  "type": "TextBlock",
-                  "text": "Hi, your automated script to UPDATE LINUX DISTROS ON ALL P1 SERVERS is beginning NOW",
-                  "wrap": true
-              }
-          ],
-          "actions": [
-              {
-                  "type": "Action.OpenUrl",
-                  "title": "View",
-                  "url": "https://automations.nuhq.org",
-                  "role": "Button"
-              }
-          ],
-          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-          "version": "1.5"
-      }
+          {
+            "type": "AdaptiveCard",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "size": "Medium",
+                    "weight": "Bolder",
+                    "text": "STARTING :: P1 SERVERS LINUX UPGRADE",
+                    "style": "heading",
+                    "wrap": true
+                },
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "type": "Image",
+                                    "style": "Person",
+                                    "url": "https://cdn.icon-icons.com/icons2/2389/PNG/512/ansible_logo_icon_145495.png",
+                                    "altText": "Matt Hidinger",
+                                    "size": "Small"
+                                }
+                            ],
+                            "width": "auto"
+                        },
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "weight": "Bolder",
+                                    "text": "NU-PROD-AUTOMATIONS",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "spacing": "None",
+                                    "text": "Created {{DATE(2017-02-14T06:08:39Z, SHORT)}}",
+                                    "isSubtle": true,
+                                    "wrap": true
+                                }
+                            ],
+                            "width": "stretch"
+                        }
+                    ]
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "Hi, your automated script to UPDATE LINUX DISTROS ON ALL P1 SERVERS is beginning NOW",
+                    "wrap": true
+                }
+            ],
+            "actions": [
+                {
+                    "type": "Action.OpenUrl",
+                    "title": "View",
+                    "url": "https://automations.nuhq.org",
+                    "role": "Button"
+                }
+            ],
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.5"
+        }
