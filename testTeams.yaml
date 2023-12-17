@@ -13,7 +13,7 @@
   tasks:
     ## Here you run the automation tasks and capture the output as required to populate the payload
 
-    - name: Send a notification to Teams Channel
+    - name: Send STARTING notification to Teams Channel
       uri:
         ## Use your own URL here
         url: "{{webhook_url}}"
@@ -32,7 +32,7 @@
         update_cache: yes
 
 
-    - name: Send a notification to Teams Channel
+    - name: Send COMPLETED notification to Teams Channel
       uri:
         ## Use your own URL here
         url: "{{webhook_url}}"
