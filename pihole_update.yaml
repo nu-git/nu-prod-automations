@@ -3,8 +3,19 @@
 
   become: true
   become_method: sudo
+  JOB_NAME: "Update PiHole Servers"
   
 
   tasks:
     - name: Update PiHole
       ansible.builtin.raw: sudo pihole -up
+
+    - name: Inform MS Teams Of Upgrade Completion
+      uri:
+        ## Use your own URL here
+        url: "{{webhook_url}}"
+        method: POST
+        body_format: json
+        body:
+          title: "Your job: ** {{JOB_NAME}} ** has completed successfully"
+          text: " The automated job to update the pihole servers has completed successfully"
