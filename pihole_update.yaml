@@ -10,6 +10,9 @@
     JOB_NAME: "Update PiHole Servers"
 
   tasks:
+    - name: Update Gravity Database
+      ansible.builtin.raw: sudo pihole -g
+      
     - name: Update PiHole
       ansible.builtin.raw: sudo pihole -up
 
