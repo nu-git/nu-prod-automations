@@ -6,5 +6,5 @@
   
 
   tasks:
-    - name: Update Pihole Software
-        shell: 'sudo pihole -up'
+    - name: Update PiHole
+      ansible.builtin.raw: sudo pihole -up
