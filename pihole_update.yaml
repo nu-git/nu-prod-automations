@@ -1,0 +1,10 @@
+---
+- hosts: all
+
+  become: true
+  become_method: sudo
+  
+
+  tasks:
+    - name: Update Pihole Software
+        shell: 'sudo pihole -up'
