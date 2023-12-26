@@ -1,0 +1,27 @@
+---
+- hosts: all
+
+  become: true
+  become_method: sudo
+
+  tasks:
+  vars:
+    ## These variables would be generated dynamically as part of your workflow
+    JOB_NAME: "Create a New User"
+  tasks:
+    - name: Create a new user
+      ansible.builtin.user:
+        name: "{{user_username}}"
+        comment: "{{user_name}}"
+        password: "{{user_password}}"
+        group: "{{user_group}}"
+
+    - name: Alert via teams of new user created
+      uri:
+        ## Use your own URL here
+        url: "{{webhook_url}}"
+        method: POST
+        body_format: json
+        body:
+          title: "Your job: ** {{JOB_NAME}} ** has completed successfully"
+          text: "A new user called {{user_name}} has been created and added to the {{user_group}} group"
