@@ -12,6 +12,7 @@
   tasks:
     - name: Remove the user & the user directory
       ansible.builtin.raw: sudo userdel "{{user_username}}"
+      ansible.builtin.raw: sudo rm -r "/home/{{user_username}}"
       
     - name: Alert via teams of user deleted
       uri:
