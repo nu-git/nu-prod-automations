@@ -13,7 +13,7 @@
       ansible.builtin.user:
         name: "{{user_username}}"
         comment: "{{user_name}}"
-        password: "{{ "{{user_password}}" | password_hash('sha512') }}"
+        password: "{{user_password}}"
         group: "{{user_group}}"
 
     - name: Alert via teams of new user created
