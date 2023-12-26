@@ -17,7 +17,7 @@
         remove: yes
 
     - name: Delete the user home directory
-      ansible.builtin.raw: sudo rm '/home/{{user_username}}'
+      ansible.builtin.raw: sudo rm "/home/{{user_username}}"
 
     - name: Alert via teams of user deleted
       uri:
