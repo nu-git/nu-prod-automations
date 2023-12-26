@@ -20,12 +20,12 @@
       ansible.builtin.raw: sudo rm '/home/{{user_username}}'
 
     - name: Alert via teams of user deleted
-        uri:
+      uri:
           ## Use your own URL here
-          url: "{{webhook_url}}"
-          method: POST
-          body_format: json
-          body:
-            title: "Your job: ** {{JOB_NAME}} ** has completed successfully"
-            text: "The user called {{user_name}} has been deleted successfully"
+        url: "{{webhook_url}}"
+        method: POST
+        body_format: json
+        body:
+          title: "Your job: ** {{JOB_NAME}} ** has completed successfully"
+          text: "The user called {{user_name}} has been deleted successfully"
  
