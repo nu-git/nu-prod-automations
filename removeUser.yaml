@@ -7,10 +7,10 @@
   tasks:
   vars:
     ## These variables would be generated dynamically as part of your workflow
-    JOB_NAME: "Create a New User"
+    JOB_NAME: "Remove A Pre-Existing User"
 
   tasks:
-    - name: Remove the user & the user directory
+    - name: Remove the user & the user home directory
       ansible.builtin.raw: sudo userdel "{{user_username}}"
       ansible.builtin.raw: sudo rm -r "/home/{{user_username}}"
       
