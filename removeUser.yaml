@@ -10,15 +10,9 @@
     JOB_NAME: "Create a New User"
 
   tasks:
-    - name: Remove the user
-      ansible.builtin.user:
-        name: "{{user_username}}"
-        state: absent
-        remove: yes
-
-    - name: Delete the user home directory
-      ansible.builtin.raw: sudo rm "/home/{{user_username}}"
-
+    - name: Remove the user & the user directory
+      ansible.builtin.raw: sudo userdel {{user_username}}
+      
     - name: Alert via teams of user deleted
       uri:
           ## Use your own URL here
