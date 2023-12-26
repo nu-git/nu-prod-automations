@@ -11,10 +11,10 @@
   tasks:
     - name: Create a new user
       ansible.builtin.user:
-        name: {{user_username}}
-        comment: {{user_name}}
-        password: {{user_password}}
-        group: {{user_group}}
+        name: "{{user_username}}"
+        comment: "{{user_name}}"
+        password: "{{user_password}}"
+        group: "{{user_group}}"
 
     - name: Alert via teams of new user created
       uri:
