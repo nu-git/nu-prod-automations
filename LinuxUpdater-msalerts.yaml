@@ -33,9 +33,9 @@
         update_cache: yes
 
     - name: Reboot the Server to apply updates
-          reboot:
-            test_command: uptime
-            reboot_timeout: 3600
+      reboot:
+        test_command: uptime
+        reboot_timeout: 3600
             
     - name: Send COMPLETED notification to Teams Channel
       uri:
