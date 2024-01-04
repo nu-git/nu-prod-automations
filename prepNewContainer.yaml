@@ -1,0 +1,44 @@
+---
+- hosts: all
+
+  become: true
+  become_method: sudo
+  
+  tasks:
+  vars:
+    ## These variables would be generated dynamically as part of your workflow
+    JOB_NAME: "Prep New Container For Automations"
+    
+  tasks:
+    - name: APT Package Upgrade
+      apt:
+        upgrade: yes
+
+    - name: APT Cache Update
+      apt:
+        update_cache: yes
+        
+    - name: Update Time to NY EST Timezone
+      ansible.builtin.raw: sudo timedatectl set-timezone America/New_York
+
+    - name: Create a new user
+      ansible.builtin.user:
+        name: "{{user_username}}"
+        comment: "{{user_name}}"
+        password: "{{user_password}}"
+        group: "{{user_group}}"
+
+    - name: Reboot Linux Machines
+      reboot:
+        test_command: uptime
+        reboot_timeout: 3600
+        
+    - name: Alert via teams of new user created
+      uri:
+        ## Use your own URL here
+        url: "{{webhook_url}}"
+        method: POST
+        body_format: json
+        body:
+          title: "Your job: ** {{JOB_NAME}} ** has completed successfully"
+          text: "Your new container has been fully prepped for automations"
