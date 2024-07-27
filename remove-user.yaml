@@ -1,0 +1,16 @@
+---
+# this file allows you to remmove a pre-existing user from the target device.. It also deletes the users home directory.
+- hosts: all
+
+  become: true
+  become_method: sudo
+
+  tasks:
+  vars:
+    ## These variables would be generated dynamically as part of your workflow
+    JOB_NAME: "Remove A Pre-Existing User"
+
+  tasks:
+    - name: Remove the user & the user home directory
+      ansible.builtin.raw: sudo userdel "{{user_username}}"
+      ansible.builtin.raw: sudo rm -r "/home/{{user_username}}"
