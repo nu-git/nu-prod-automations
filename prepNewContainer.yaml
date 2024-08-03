@@ -1,9 +1,11 @@
 ---
 - hosts: all
+  ## Notes: This script assumes you're logged in as the staging user. You're now adding the automation account.
+  ## When script is done, run the "remove-user" script to delete the staging user
 
   become: true
   become_method: sudo
-
+  
   tasks:
   vars:
     ## These variables would be generated dynamically as part of your workflow
@@ -22,7 +24,14 @@
       ## Updates the time on the server to EST
       ansible.builtin.raw: sudo timedatectl set-timezone America/New_York
 
-    - name: Create a new user
+    - name: Create the auomation user
+      ansible.builtin.user:
+        name: "{{automationuser_username}}"
+        comment: "{{automationuser_name}}"
+        password: "{{automationuser_password}}"
+        group: "{{automationuser_group}}"
+
+    - name: Create the admin user -- needed if you want to create a local admin account
       ansible.builtin.user:
         name: "{{newuser_username}}"
         comment: "{{newuser_name}}"
@@ -32,20 +41,6 @@
     - name: Manual Upgrade
       ## code to force full upgrade. This is helpful if any was missed.
       ansible.builtin.raw: sudo apt update && apt upgrade -y && apt dist-upgrade -y
-
-    - name: Remove the staging user account & home directory
-      ## upgrade to local admin & delete the temp staging user from the machine
-      ansible.builtin.raw: sudo su "{{localadmin_username}}"
-      ansible.builtin.pause:
-        prompt: "[sudo] password for {{localadmin_username}}"
-        echo: "{{loggedinuser_password}}"
-      ## make sure you're in the local admins home directory instead of the staging user
-      ansible.builtin.raw: cd
-      ansible.builtin.raw: sudo userdel "{{staginguser_username}}"
-      ansible.builtin.raw: sudo rm -r "/home/{{staginguser_username}}"
-      ## pause the script(for 30 seconds) in case there's any delays
-      ansible.builtin.pause:
-        seconds: 30
 
     - name: Reboot Linux Machine
       ## reboots machine to ensure that all updates & configs have been applied
