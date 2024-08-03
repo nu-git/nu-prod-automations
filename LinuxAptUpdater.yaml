@@ -15,3 +15,8 @@
 
     - name: Manual Upgrade[Covers any missed upgrades]
       ansible.builtin.raw: sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
+      
+    - name: Reboot the Server to apply updates
+      reboot:
+        test_command: uptime
+        reboot_timeout: 3600
