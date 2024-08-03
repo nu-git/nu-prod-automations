@@ -1,7 +1,6 @@
 ---
 - hosts: all
   ## Notes: This script assumes you're logged in as the staging user. You're now adding the automation account.
-  ## When script is done, run the "remove-user" script to delete the staging user
 
   become: true
   become_method: sudo
@@ -24,7 +23,7 @@
       ## Updates the time on the server to EST
       ansible.builtin.raw: sudo timedatectl set-timezone America/New_York
 
-    - name: Create the auomation user
+    - name: Create the automation user
       ansible.builtin.user:
         name: "{{automationuser_username}}"
         comment: "{{automationuser_name}}"
@@ -37,10 +36,6 @@
         comment: "{{newuser_name}}"
         password: "{{newuser_password}}"
         group: "{{newuser_group}}"
-
-    - name: Remove any unnecessary user & the user home directory
-      ansible.builtin.raw: sudo userdel "{{deleteuser_username}}"
-      ansible.builtin.raw: sudo rm -r "/home/{{deleteuser_username}}"
     
     - name: Manual Upgrade
       ## code to force full upgrade. This is helpful if any was missed.
