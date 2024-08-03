@@ -37,7 +37,11 @@
         comment: "{{newuser_name}}"
         password: "{{newuser_password}}"
         group: "{{newuser_group}}"
-        
+
+    - name: Remove any unnecessary user & the user home directory
+      ansible.builtin.raw: sudo userdel "{{deleteuser_username}}"
+      ansible.builtin.raw: sudo rm -r "/home/{{deleteuser_username}}"
+    
     - name: Manual Upgrade
       ## code to force full upgrade. This is helpful if any was missed.
       ansible.builtin.raw: sudo apt update && apt upgrade -y && apt dist-upgrade -y
