@@ -30,6 +30,7 @@
         group: "{{newuser_group}}"
         
     - name: Manual Upgrade
+      ## code to force full upgrade. This is helpful if any was missed.
       ansible.builtin.raw: sudo apt update && apt upgrade -y && apt dist-upgrade -y
       ## pauses the script so the previous line can be successfully completed
       ansible.builtin.pause:
