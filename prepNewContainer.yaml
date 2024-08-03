@@ -3,7 +3,7 @@
 
   become: true
   become_method: sudo
-  
+
   tasks:
   vars:
     ## These variables would be generated dynamically as part of your workflow
@@ -24,10 +24,10 @@
 
     - name: Create a new user
       ansible.builtin.user:
-        name: "{{user_username}}"
-        comment: "{{user_name}}"
-        password: "{{user_password}}"
-        group: "{{user_group}}"
+        name: "{{newuser_username}}"
+        comment: "{{newuser_name}}"
+        password: "{{newuser_password}}"
+        group: "{{newuser_group}}"
         
     - name: Manual Upgrade
       ## code to force full uograde. This is helpful if any was missed.
@@ -35,10 +35,23 @@
       ## pauses the script so the previous line can be successfully completed
       ansible.builtin.pause:
         minutes: 1
-  
 
-    - name: Reboot Linux Machines
-      ## reboots machine to ensure that all updates have been applied
+    - name: Remove the staging user account & home directory
+      # upgrade to local admin & delete the temp staging user from the machine
+      ansible.builtin.raw: sudo su "{{localadmin_username}}"
+      ansible.builtin.pause:
+        prompt: [sudo] password for "{{localadmin_username}}"
+        echo: "{{loggedinuser_password}}"
+      # make sure you're in the local admins home directory instead of the staging user
+      ansible.builtin.raw: cd
+      ansible.builtin.raw: sudo userdel "{{staginguser_username}}"
+      ansible.builtin.raw: sudo rm -r "/home/{{staginguser_username}}"
+      ## pause the script(for 30 seconds) in case there's any delays
+      ansible.builtin.pause:
+        seconds: 30
+
+    - name: Reboot Linux Machine
+      ## reboots machine to ensure that all updates & configs have been applied
       reboot:
         test_command: uptime
         reboot_timeout: 3600
