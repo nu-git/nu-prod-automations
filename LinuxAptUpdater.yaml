@@ -12,3 +12,6 @@
     - name: APT Cache Update
       apt:
         update_cache: yes
+
+    - name: Manual Upgrade[Covers any missed upgrades]
+      ansible.builtin.raw: sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
