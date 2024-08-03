@@ -1,0 +1,32 @@
+---
+- hosts: all
+
+  become: true
+  become_method: sudo
+
+  tasks:
+  vars:
+    ## These variables would be generated dynamically as part of your workflow
+    JOB_NAME: "Update PiHole Servers"
+
+  tasks:
+    - name: Update Gravity Database
+      ansible.builtin.raw: sudo pihole -g
+      
+    - name: Update PiHole
+      ansible.builtin.raw: sudo pihole -up
+
+    - name: Reboot the PiHole Server to apply updates
+      reboot:
+        test_command: uptime
+        reboot_timeout: 3600
+
+    - name: Inform MS Teams Of Upgrade Completion
+      uri:
+        ## Use your own URL here
+        url: "{{webhook_url}}"
+        method: POST
+        body_format: json
+        body:
+          title: "Your job: ** {{JOB_NAME}} ** has completed successfully"
+          text: " The automated job to update the pihole servers has completed successfully"
