@@ -40,7 +40,7 @@
       # upgrade to local admin & delete the temp staging user from the machine
       ansible.builtin.raw: sudo su "{{localadmin_username}}"
       ansible.builtin.pause:
-        prompt: "[sudo] password for "{{localadmin_username}}""
+        prompt: "[sudo] password for {{localadmin_username}}"
         echo: "{{loggedinuser_password}}"
       # make sure you're in the local admins home directory instead of the staging user
       ansible.builtin.raw: cd
