@@ -1,0 +1,44 @@
+---
+- hosts: all
+
+  become: true
+  become_method: sudo
+  
+  tasks:
+  vars:
+    ## These variables would be generated dynamically as part of your workflow
+    JOB_NAME: "Prep New Container For Automations"
+    
+  tasks:
+    - name: APT Package Upgrade
+      apt:
+        upgrade: yes
+
+    - name: APT Cache Update
+      apt:
+        update_cache: yes
+        
+    - name: Update Time to NY EST Timezone
+      ## Updates the time on the server to EST
+      ansible.builtin.raw: sudo timedatectl set-timezone America/New_York
+
+    - name: Create a new user
+      ansible.builtin.user:
+        name: "{{user_username}}"
+        comment: "{{user_name}}"
+        password: "{{user_password}}"
+        group: "{{user_group}}"
+        
+    - name: Manual Upgrade
+      ## code to force full uograde. This is helpful if any was missed.
+      ansible.builtin.raw: sudo apt update && apt upgrade -y && apt dist-upgrade -y
+      ## pauses the script so the previous line can be successfully completed
+      ansible.builtin.pause:
+        minutes: 1
+  
+
+    - name: Reboot Linux Machines
+      ## reboots machine to ensure that all updates have been applied
+      reboot:
+        test_command: uptime
+        reboot_timeout: 3600
