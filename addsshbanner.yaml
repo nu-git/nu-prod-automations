@@ -2,6 +2,7 @@
 - name: Edit sshd_config and add a new banner file
   hosts: all
   become: yes
+  gather_facts: no
   tasks:
     - name: Create the banner file containing the warning message and official NU LOGO
       copy:
