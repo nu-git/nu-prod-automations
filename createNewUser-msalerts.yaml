@@ -15,6 +15,8 @@
         comment: "{{user_name}}"
         password: "{{user_password}}"
         group: "{{user_group}}"
+        ## set the users default shell to /bin/bash. This prevents an issue where the users default shell is set as /bin/sh
+        shell: /bin/bash
 
     - name: Alert via teams of new user created
       uri:
