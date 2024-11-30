@@ -1,0 +1,14 @@
+---
+- hosts: all
+  ## THIS SCRIPT UPDATES THE SELECTED USER'S DEFAULT SHELL TO /BIN/BASH
+  become: true
+  become_method: sudo
+  
+  tasks:
+  vars:
+    ## These variables would be generated dynamically as part of your workflow
+    JOB_NAME: "UPDATE USER SHELL TO BIN/BASH"
+    
+  tasks:
+    - name: Update User Shell
+      ansible.builtin.command: usermod --shell /bin/bash {{user_username}}
