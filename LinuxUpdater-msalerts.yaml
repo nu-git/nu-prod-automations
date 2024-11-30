@@ -35,7 +35,7 @@
     - name: Reboot the Server to apply updates
       reboot:
         test_command: uptime
-        reboot_timeout: 3600
+        reboot_timeout: 7200
             
     - name: Send COMPLETED notification to Teams Channel
       uri:
