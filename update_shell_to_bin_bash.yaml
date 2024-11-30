@@ -11,4 +11,4 @@
     
   tasks:
     - name: Update User Shell
-      ansible.builtin.command: usermod --shell /bin/bash {{user_username}}
+      ansible.builtin.command: usermod --shell /bin/zsh {{user_username}}
