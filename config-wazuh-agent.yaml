@@ -5,16 +5,8 @@
   become_method: sudo
 
   tasks:
-    - name: APT Package Upgrade
-      apt:
-        upgrade: yes
-
-    - name: APT Cache Update
-      apt:
-        update_cache: yes
-
     - name: Install Wazuh Agent & Add Agent to the Wazuh Manager
-      ansible.builtin.raw: wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb && sudo WAZUH_MANAGER='prod-wazuh.nu.local' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb
+      ansible.builtin.raw: wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb && sudo WAZUH_MANAGER='{{wazuh_manager_ip}}' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb
       
-    - name: Enable the Wazuh-agent
+    - name: Enable & Start the Wazuh-agent
       ansible.builtin.raw:  sudo systemctl daemon-reload && sudo systemctl enable wazuh-agent && sudo systemctl start wazuh-agent
