@@ -1,4 +1,5 @@
 ---
+  #variables: wazuh_manager_ip = your wazuh managers's ip && wazuh_agent_group = the group in wazuh you want the agent to be part of. Wazuh has a "default" group by default
 - hosts: all
 
   become: true
@@ -6,7 +7,7 @@
 
   tasks:
     - name: Install Wazuh Agent & Add Agent to the Wazuh Manager
-      ansible.builtin.raw: wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb && sudo WAZUH_MANAGER='{{wazuh_manager_ip}}' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb
-      
+      ansible.builtin.raw: wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb && sudo WAZUH_MANAGER='{{wazuh_manager_ip}}' WAZUH_AGENT_GROUP='{{wazuh_agent_group}}' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb
+    
     - name: Enable & Start the Wazuh-agent
       ansible.builtin.raw:  sudo systemctl daemon-reload && sudo systemctl enable wazuh-agent && sudo systemctl start wazuh-agent
