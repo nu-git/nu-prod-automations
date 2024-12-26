@@ -46,3 +46,7 @@
       reboot:
         test_command: uptime
         reboot_timeout: 3600
+        
+    - name: Update User Shell
+      ## Updates the new user' shell to the preferred choice
+      ansible.builtin.command: usermod --shell {{preferred_shell}} {{newuser_username}}
